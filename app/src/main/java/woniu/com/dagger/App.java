@@ -1,12 +1,7 @@
 package woniu.com.dagger;
 
-import android.app.Activity;
-
-import javax.inject.Inject;
-
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
-import dagger.android.DispatchingAndroidInjector;
 import woniu.com.dagger.di.DaggerAppComponent;
 
 /**
@@ -17,9 +12,6 @@ import woniu.com.dagger.di.DaggerAppComponent;
  */
 public class App extends DaggerApplication {
 
-    @Inject
-    DispatchingAndroidInjector<Activity> mActivityDispatchingAndroidInjector;
-
     private static App mApp;
 
     @Override
@@ -28,13 +20,12 @@ public class App extends DaggerApplication {
         mApp = this;
     }
 
-    @Override
-    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerAppComponent.builder().create(this);
-    }
-
     public static App getInstance() {
         return mApp;
     }
 
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return DaggerAppComponent.builder().create(this);
+    }
 }

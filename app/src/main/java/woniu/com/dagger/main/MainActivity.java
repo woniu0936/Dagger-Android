@@ -5,10 +5,10 @@ import android.widget.TextView;
 
 import javax.inject.Inject;
 
-import dagger.android.DaggerActivity;
+import dagger.android.support.DaggerAppCompatActivity;
 import woniu.com.dagger.R;
 
-public class MainActivity extends DaggerActivity {
+public class MainActivity extends DaggerAppCompatActivity {
 
     @Inject
     MainViewModel mViewModel;
