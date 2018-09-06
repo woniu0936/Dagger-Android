@@ -7,7 +7,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import woniu.com.dagger.di.main.MainComponent;
 
 /**
  * @author woniu
@@ -15,7 +14,7 @@ import woniu.com.dagger.di.main.MainComponent;
  * @description
  * @since 2018/9/1 下午5:53
  */
-@Module(subcomponents = {MainComponent.class})
+@Module
 public class AppModule {
 
     @Singleton

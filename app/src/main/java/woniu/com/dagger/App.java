@@ -1,13 +1,12 @@
 package woniu.com.dagger;
 
 import android.app.Activity;
-import android.app.Application;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
 import woniu.com.dagger.di.DaggerAppComponent;
 
 /**
@@ -16,7 +15,7 @@ import woniu.com.dagger.di.DaggerAppComponent;
  * @description
  * @since 2018/9/1 下午5:52
  */
-public class App extends Application implements HasActivityInjector {
+public class App extends DaggerApplication {
 
     @Inject
     DispatchingAndroidInjector<Activity> mActivityDispatchingAndroidInjector;
@@ -27,18 +26,15 @@ public class App extends Application implements HasActivityInjector {
     public void onCreate() {
         super.onCreate();
         mApp = this;
-        DaggerAppComponent.builder()
-                .application(this)
-                .builder()
-                .inject(this);
+    }
+
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return DaggerAppComponent.builder().create(this);
     }
 
     public static App getInstance() {
         return mApp;
     }
 
-    @Override
-    public AndroidInjector<Activity> activityInjector() {
-        return mActivityDispatchingAndroidInjector;
-    }
 }
