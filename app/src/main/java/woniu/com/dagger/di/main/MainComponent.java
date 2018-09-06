@@ -1,9 +1,8 @@
 package woniu.com.dagger.di.main;
 
-import dagger.Component;
-import woniu.com.dagger.MainActivity;
-import woniu.com.dagger.di.Activity;
-import woniu.com.dagger.di.AppComponent;
+import dagger.Subcomponent;
+import dagger.android.AndroidInjector;
+import woniu.com.dagger.main.MainActivity;
 
 /**
  * @author woniu
@@ -11,10 +10,10 @@ import woniu.com.dagger.di.AppComponent;
  * @description
  * @since 2018/9/1 下午6:36
  */
-@Activity
-@Component(dependencies = AppComponent.class, modules = MainModule.class)
-public interface MainComponent {
+@Subcomponent(modules = MainModule.class)
+public interface MainComponent extends AndroidInjector<MainActivity> {
 
-    void inject(MainActivity activity);
+    @Subcomponent.Builder
+    abstract class Builder extends AndroidInjector.Builder<MainActivity>{}
 
 }

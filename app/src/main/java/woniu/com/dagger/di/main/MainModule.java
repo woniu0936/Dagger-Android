@@ -2,8 +2,7 @@ package woniu.com.dagger.di.main;
 
 import dagger.Module;
 import dagger.Provides;
-import woniu.com.dagger.MainViewModel;
-import woniu.com.dagger.di.Activity;
+import woniu.com.dagger.main.MainViewModel;
 
 /**
  * @author woniu
@@ -14,9 +13,8 @@ import woniu.com.dagger.di.Activity;
 @Module
 public class MainModule {
 
-    @Activity
     @Provides
-    MainViewModel provideTextView() {
+    MainViewModel provideViewModel() {
         return new MainViewModel("MainViewModel");
     }
 

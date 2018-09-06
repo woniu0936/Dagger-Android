@@ -1,4 +1,4 @@
-package woniu.com.dagger;
+package woniu.com.dagger.main;
 
 /**
  * @author woniu

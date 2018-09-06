@@ -1,10 +1,13 @@
 package woniu.com.dagger.di;
 
+import android.app.Application;
+import android.content.Context;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import woniu.com.dagger.App;
+import woniu.com.dagger.di.main.MainComponent;
 
 /**
  * @author woniu
@@ -12,18 +15,12 @@ import woniu.com.dagger.App;
  * @description
  * @since 2018/9/1 下午5:53
  */
-@Module
+@Module(subcomponents = {MainComponent.class})
 public class AppModule {
-
-    private App mApp;
-
-    public AppModule(App app) {
-        this.mApp = app;
-    }
 
     @Singleton
     @Provides
-    App provideApp() {
-        return mApp;
+    Context provideContext(Application application) {
+        return application;
     }
 }

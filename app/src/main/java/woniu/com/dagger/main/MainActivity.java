@@ -1,4 +1,4 @@
-package woniu.com.dagger;
+package woniu.com.dagger.main;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import javax.inject.Inject;
 
-import woniu.com.dagger.di.main.DaggerMainComponent;
-import woniu.com.dagger.di.main.MainModule;
+import dagger.android.AndroidInjection;
+import woniu.com.dagger.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,13 +17,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DaggerMainComponent.builder()
-                .appComponent(App.getInstance().getAppComponent())
-                .mainModule(new MainModule())
-                .build()
-                .inject(this);
         TextView tvText = findViewById(R.id.tv_text);
         tvText.setText(mViewModel.getName());
 
